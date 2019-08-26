@@ -1,18 +1,24 @@
-import React from 'react';
-import logo from './logo.png';
-import './App.css';
+import React, { Suspense } from "react"
+import "./App.scss"
+import './i18n'
+
+import Header from "./components/Header/Header"
+import Footer from "./components/Footer/Footer"
 
 function App() {
-  return (
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="logo" />
-        <p>
-          Empty app.
-        </p>
-      </header>
+        <Suspense fallback={ <h1>Loading...</h1> }>
+            <Header />
+
+            <div className="content">
+                Empty app.
+            </div>
+
+            <Footer />
+        </Suspense>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

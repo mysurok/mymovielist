@@ -1,0 +1,9 @@
+.App {
+  background-color: #282c34;
+  color: #ffffff;
+
+  .content {
+    min-height: calc(100vh - 110px);
+    margin-top: 60px;
+  }
+}
