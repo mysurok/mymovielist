@@ -1,5 +1,7 @@
 {
   "header": "My movie Library",
   "footer": "Footer är här",
-  "search": "Sök"
+  "search": "Sök",
+  "release_date": "Utgivningsdatum",
+  "tagline": "Tagline"
 }

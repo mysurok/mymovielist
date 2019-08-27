@@ -1,5 +1,7 @@
 {
   "header": "My movie Library",
   "footer": "Footer is here",
-  "search": "Search"
+  "search": "Search",
+  "release_date": "Release date",
+  "tagline": "Tagline"
 }

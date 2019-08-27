@@ -9,7 +9,7 @@ i18n.use(Backend)
             loadPath: "/locales/{{lng}}.json",
         },
         lng: "en",
-        fallbackLng: "en",
+        fallbackLng: ["en", "se", "ru"],
         debug: true,
 
         interpolation: {
