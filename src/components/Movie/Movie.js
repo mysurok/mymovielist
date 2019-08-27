@@ -3,9 +3,7 @@ import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
 
 import "./Movie.scss"
-import {search} from "../../actions/SearchBox"
-
-const stars = "★★★★★★★★★★"
+import { Rating } from "../Rating/Rating"
 
 class Movie extends Component {
 
@@ -28,7 +26,7 @@ class Movie extends Component {
         return (
             <span className="item">
                 <span className="name">{ i18n(name) }:</span>
-                <span className="value">{ prefix + movie[name] + postfix}</span>
+                <span className="value">{ prefix + movie[name] + postfix }</span>
             </span>
         )
     }
@@ -47,39 +45,6 @@ class Movie extends Component {
         )
     }
 
-    getRatingClassName = (rating, index) => {
-        if ( rating >= index ) {
-            return "full"
-        } else {
-            if ( index > rating && index - 1 < rating) {
-                return "half"
-            } else {
-                return "empty"
-            }
-        }
-    }
-
-    drawRating = () => {
-        let movie = this.props.movie
-        if (!movie.vote_average) {
-            return null
-        }
-        //popularity: 22.122
-        //vote_count: 14815
-
-        return (
-            <span className="rating">
-                { stars.split("").map((star, index) => (
-                    <span key={index} className={this.getRatingClassName(movie.vote_average, index + 1)}> {star} </span>
-                ))}
-                <span className="details">
-                    { movie.vote_average } ({ movie.vote_count })
-                </span>
-                { this.drawItem("popularity") }
-            </span>
-        )
-    }
-
     render () {
         let movie = this.props.movie
         if (!movie) {
@@ -92,7 +57,7 @@ class Movie extends Component {
             <div className="movie">
                 <div className="leftSection">
                     <img src={ this.props.config.images.base_url + "w185" + movie.poster_path } className="poster"/>
-                    { this.drawRating() }
+                    <Rating rating={ movie.vote_average } count={ movie.vote_count } popularity={{name: i18n("popularity"), count: movie.popularity}} />
                 </div>
                 <div className="info">
                     <h1>{ movie.title }</h1>
@@ -121,4 +86,4 @@ const stateToProps = (state) => {
     }
 }
 
-export default connect(stateToProps, { search })(withTranslation()(Movie))
+export default connect(stateToProps)(withTranslation()(Movie))

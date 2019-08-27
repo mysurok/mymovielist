@@ -13,32 +13,6 @@
     border: 2px solid #ffffff;
   }
 
-  .rating {
-    display: block;
-    width: 100%;
-    text-align: center;
-
-    .details, .item {
-      font-size: 14px;
-      line-height: 30px;
-    }
-
-    span {
-      display: inline-block;
-    }
-    .full {
-      color: #fbcb05;
-    }
-    .empty {
-      color: #999999;
-    }
-    .half {
-      background: -webkit-linear-gradient(left, #fbcb05 49%, #999999 50%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  }
-
   .info {
     padding: 10px 20px 30px 10px;
 
