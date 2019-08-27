@@ -4,10 +4,13 @@
   "search": "Sök",
   "release_date": "Utgivningsdatum",
   "tagline": "Tagline",
+  "homepage": "Hemsida",
   "genres": "Genrer",
   "budget": "Budget",
   "revenue": "Inkomst",
   "runtime": "Körning",
+  "min": " min",
+  "popularity": "Popularitet",
   "overview": "Översikt",
   "production_countries": "Produktionsländer",
   "production_companies": "Produktionsföretag"

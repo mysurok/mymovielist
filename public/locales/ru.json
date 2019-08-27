@@ -4,10 +4,13 @@
   "search": "Искать",
   "release_date": "Дата релиза",
   "tagline": "Слоган",
+  "homepage": "Сайт",
   "genres": "Жанры",
   "budget": "Бюджет",
   "revenue": "Сборы",
   "runtime": "Время",
+  "min": " минут",
+  "popularity": "Популярность",
   "overview": "Обзор",
   "production_countries": "Страна",
   "production_companies": "Компания"

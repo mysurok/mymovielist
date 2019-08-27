@@ -26,7 +26,6 @@ class LocaleSwitch extends Component {
     }
 
     render () {
-        console.log("Props: ", this.props)
         return (
             <div className="localeSwitch" onClick={ (e) => this.changeLocale(e) }>
                 <span className="flag-icon flag-icon-gb" value="en"></span>

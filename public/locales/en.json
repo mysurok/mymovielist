@@ -4,10 +4,13 @@
   "search": "Search",
   "release_date": "Release date",
   "tagline": "Tagline",
+  "homepage": "Homepage",
   "genres": "Genres",
   "budget": "Budget",
   "revenue": "Revenue",
   "runtime": "Runtime",
+  "min": " min",
+  "popularity": "Popularity",
   "overview": "Overview",
   "production_countries": "Production countries",
   "production_companies": "Production companies"

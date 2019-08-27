@@ -4,23 +4,82 @@ import { withTranslation } from "react-i18next"
 
 import "./Movie.scss"
 import {search} from "../../actions/SearchBox"
-/*
-adult: false
-backdrop_path: "/tbhdm8UJAb4ViCTsulYFL3lxMCd.jpg"
-belongs_to_collection: {id: 8945, name: "Безумный Макс (Коллекция)", poster_path: "/dhp7PoxYtf72LXFqOFRsWLmD0br.jpg", backdrop_path: "/zI0q2ENcQOLECbe0gAEGlncVh2j.jpg"}
-homepage: "http://www.madmaxmovie.com"
-id: 76341
-imdb_id: "tt1392190"
-original_language: "en"
-popularity: 22.122
-spoken_languages: [{…}]
-status: "Released"
-video: false
-vote_average: 7.4
-vote_count: 14815
- */
+
+const stars = "★★★★★★★★★★"
 
 class Movie extends Component {
+
+    drawItem = (name, prefix = "", postfix = "") => {
+        let movie = this.props.movie
+        const i18n = this.props.t
+        if (!movie[name]) {
+            return null
+        }
+        if (Array.isArray(movie[name])) {
+            return (
+                <span className="item">
+                    <span className="name">{ i18n(name) }:</span>
+                    <span className="list">
+                        { movie[name].map(item => (<span key={item.id || item.iso_3166_1}> {item.name} </span>))}
+                    </span>
+                </span>
+            )
+        }
+        return (
+            <span className="item">
+                <span className="name">{ i18n(name) }:</span>
+                <span className="value">{ prefix + movie[name] + postfix}</span>
+            </span>
+        )
+    }
+
+    drawUrl = (name) => {
+        let movie = this.props.movie
+        const i18n = this.props.t
+        if (!movie[name]) {
+            return null
+        }
+        return (
+            <span className="item">
+                <span className="name">{ i18n(name) }:</span>
+                <span className="value"><a href={movie[name]} target="_blank">{ movie[name] }</a></span>
+            </span>
+        )
+    }
+
+    getRatingClassName = (rating, index) => {
+        if ( rating >= index ) {
+            return "full"
+        } else {
+            if ( index > rating && index - 1 < rating) {
+                return "half"
+            } else {
+                return "empty"
+            }
+        }
+    }
+
+    drawRating = () => {
+        let movie = this.props.movie
+        if (!movie.vote_average) {
+            return null
+        }
+        //popularity: 22.122
+        //vote_count: 14815
+
+        return (
+            <span className="rating">
+                { stars.split("").map((star, index) => (
+                    <span key={index} className={this.getRatingClassName(movie.vote_average, index + 1)}> {star} </span>
+                ))}
+                <span className="details">
+                    { movie.vote_average } ({ movie.vote_count })
+                </span>
+                { this.drawItem("popularity") }
+            </span>
+        )
+    }
+
     render () {
         let movie = this.props.movie
         if (!movie) {
@@ -31,25 +90,30 @@ class Movie extends Component {
 
         return (
             <div className="movie">
-                <img src={ this.props.config.images.base_url + "w185" + movie.poster_path } className="poster"/>
-                <h1>{ movie.title }</h1>
-                <h2>{ movie.original_title }</h2>
-                { i18n("production_countries") }: { movie.production_countries.map(item => (<span key={item.iso_3166_1}> {item.name} </span>))}
-                { i18n("production_companies") }: { movie.production_companies.map(item => (<span key={item.id}> {item.name} </span>))}
-                { i18n("tagline") }: { movie.tagline }
-                { i18n("genres") }: { movie.genres.map(item => (<span key={item.id}> {item.name} </span>))}
-                { i18n("budget") }: { movie.budget }
-                { i18n("revenue") }: { movie.revenue }
-                { i18n("release_date") }: { movie.release_date }
-                { i18n("runtime") }: { movie.runtime }
-                { i18n("overview") }: { movie.overview }
+                <div className="leftSection">
+                    <img src={ this.props.config.images.base_url + "w185" + movie.poster_path } className="poster"/>
+                    { this.drawRating() }
+                </div>
+                <div className="info">
+                    <h1>{ movie.title }</h1>
+                    <h2>{ movie.original_title }</h2>
+                    { this.drawItem("tagline") }
+                    { this.drawUrl("homepage") }
+                    { this.drawItem("production_countries") }
+                    { this.drawItem("production_companies") }
+                    { this.drawItem("genres") }
+                    { this.drawItem("budget", "$") }
+                    { this.drawItem("revenue", "$") }
+                    { this.drawItem("release_date") }
+                    { this.drawItem("runtime", null, i18n("min")) }
+                    <span className="overview">{ movie.overview }</span>
+                </div>
             </div>
         )
     }
 }
 
 const stateToProps = (state) => {
-    console.log("State: ", state)
     return {
         movie: state.searchBox.searchResult,
         config: state.configuration,

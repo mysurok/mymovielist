@@ -3,5 +3,7 @@
     min-height: calc(100vh - 190px);
     margin-top: 80px;
     padding: 30px;
+    display: flex;
+    justify-content: space-around;
   }
 }
