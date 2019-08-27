@@ -5,6 +5,7 @@ import "./i18n"
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import Movie from "./components/Movie/Movie"
+import Error from "./components/Error/Error"
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
 
             <div className="content">
                 <Movie />
+                <Error />
             </div>
 
             <Footer />

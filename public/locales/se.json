@@ -13,5 +13,6 @@
   "popularity": "Popularitet",
   "overview": "Översikt",
   "production_countries": "Produktionsländer",
-  "production_companies": "Produktionsföretag"
+  "production_companies": "Produktionsföretag",
+  "error_title": "Tyvärr slutade sökningen efter din fråga med ett fel: "
 }

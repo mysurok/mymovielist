@@ -13,5 +13,6 @@
   "popularity": "Популярность",
   "overview": "Обзор",
   "production_countries": "Страна",
-  "production_companies": "Компания"
+  "production_companies": "Компания",
+  "error_title": "К сожалению, поиск по вашему запросу закончился с ошибкой: "
 }

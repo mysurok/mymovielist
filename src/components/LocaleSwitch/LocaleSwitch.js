@@ -28,9 +28,9 @@ class LocaleSwitch extends Component {
     render () {
         return (
             <div className="localeSwitch" onClick={ (e) => this.changeLocale(e) }>
-                <span className="flag-icon flag-icon-gb" value="en"></span>
-                <span className="flag-icon flag-icon-se" value="se"></span>
-                <span className="flag-icon flag-icon-ru" value="ru"></span>
+                <span className="flag-icon flag-icon-gb" value="en" />
+                <span className="flag-icon flag-icon-se" value="se" />
+                <span className="flag-icon flag-icon-ru" value="ru" />
             </div>
         )
     }

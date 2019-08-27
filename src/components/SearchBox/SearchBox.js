@@ -25,7 +25,7 @@ class SearchBox extends Component {
 
     componentDidUpdate = (prevProps) => {
         if (prevProps.config.locale.region !== this.props.config.locale.region) {
-            this.props.search(this.props.config.locale)
+            this.props.search(this.props.config.locale, this.props.query)
         }
     }
 
@@ -45,8 +45,7 @@ const stateToProps = (state) => {
     console.log("State: ", state)
     return {
         config: state.configuration,
-        searchResult: state.searchResult,
-        query: state.query
+        query: state.searchBox.query
     }
 }
 

@@ -13,5 +13,6 @@
   "popularity": "Popularity",
   "overview": "Overview",
   "production_countries": "Production countries",
-  "production_companies": "Production companies"
+  "production_companies": "Production companies",
+  "error_title": "Unfortunately, the search for your query ended with an error: "
 }
