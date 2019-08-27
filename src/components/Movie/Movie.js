@@ -40,14 +40,14 @@ class Movie extends Component {
         return (
             <span className="item">
                 <span className="name">{ i18n(name) }:</span>
-                <span className="value"><a href={movie[name]} target="_blank">{ movie[name] }</a></span>
+                <span className="value"><a href={movie[name]} target="_blank" rel="noopener noreferrer">{ movie[name] }</a></span>
             </span>
         )
     }
 
     render () {
         let movie = this.props.movie
-        if (!movie) {
+        if (!movie || !movie.id) {
             return null
         }
 
@@ -56,7 +56,7 @@ class Movie extends Component {
         return (
             <div className="movie">
                 <div className="leftSection">
-                    <img src={ this.props.config.images.base_url + "w185" + movie.poster_path } className="poster"/>
+                    <img src={ this.props.config.images.base_url + "w185" + movie.poster_path } className="poster" alt={ movie.title }/>
                     <Rating rating={ movie.vote_average } count={ movie.vote_count } popularity={{name: i18n("popularity"), count: movie.popularity}} />
                 </div>
                 <div className="info">

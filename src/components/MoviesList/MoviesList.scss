@@ -1,0 +1,50 @@
+.moviesList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 1000px;
+
+  .item {
+    width: 480px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: #efefef;
+    color: #404040;
+    box-shadow: 5px 0px 10px #000, -5px 0px 10px #000;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 14px;
+
+    .poster {
+      border: 2px solid #ffffff;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      height: 170px;
+      overflow: hidden;
+
+      &:hover {
+        height: auto;
+      }
+
+      h1 {
+        font-size: 22px;
+        margin: 0;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+
+        .details {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
