@@ -1,6 +1,6 @@
 import React, { Suspense } from "react"
 import "./App.scss"
-import './i18n'
+import "./i18n"
 
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"

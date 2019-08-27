@@ -1,11 +1,15 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
+
+import { search } from "../../actions/SearchBox"
 
 import "./SearchBox.scss"
 
 class SearchBox extends Component {
     onSearch = () => {
         console.log("Do search")
+        this.props.search()
     }
 
     onKeyDown = (e) => {
@@ -16,6 +20,7 @@ class SearchBox extends Component {
     }
 
     render () {
+        console.log("Props: ", this.props)
         const i18n = this.props.t
         return (
             <div className="SearchBox">
@@ -25,4 +30,12 @@ class SearchBox extends Component {
     }
 }
 
-export default withTranslation()(SearchBox)
+const stateToProps = (state) => {
+    console.log("State: ", state)
+    return {
+        searchResult: state.searchResult,
+        query: state.query
+    }
+}
+
+export default connect(stateToProps, {search})(withTranslation()(SearchBox))
