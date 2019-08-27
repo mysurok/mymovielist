@@ -4,6 +4,7 @@ import "./i18n"
 
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
+import Movie from "./components/Movie/Movie"
 
 function App() {
     return (
@@ -12,7 +13,7 @@ function App() {
             <Header />
 
             <div className="content">
-                Empty app.
+                <Movie />
             </div>
 
             <Footer />

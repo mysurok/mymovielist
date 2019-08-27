@@ -3,5 +3,12 @@
   "footer": "Footer är här",
   "search": "Sök",
   "release_date": "Utgivningsdatum",
-  "tagline": "Tagline"
+  "tagline": "Tagline",
+  "genres": "Genrer",
+  "budget": "Budget",
+  "revenue": "Inkomst",
+  "runtime": "Körning",
+  "overview": "Översikt",
+  "production_countries": "Produktionsländer",
+  "production_companies": "Produktionsföretag"
 }

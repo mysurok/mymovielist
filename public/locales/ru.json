@@ -3,5 +3,12 @@
   "footer": "Нижний колонтитул здесь",
   "search": "Искать",
   "release_date": "Дата релиза",
-  "tagline": "Слоган"
+  "tagline": "Слоган",
+  "genres": "Жанры",
+  "budget": "Бюджет",
+  "revenue": "Сборы",
+  "runtime": "Время",
+  "overview": "Обзор",
+  "production_countries": "Страна",
+  "production_companies": "Компания"
 }

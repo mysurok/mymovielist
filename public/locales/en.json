@@ -3,5 +3,12 @@
   "footer": "Footer is here",
   "search": "Search",
   "release_date": "Release date",
-  "tagline": "Tagline"
+  "tagline": "Tagline",
+  "genres": "Genres",
+  "budget": "Budget",
+  "revenue": "Revenue",
+  "runtime": "Runtime",
+  "overview": "Overview",
+  "production_countries": "Production countries",
+  "production_companies": "Production companies"
 }
