@@ -16,5 +16,5 @@
   "production_companies": "Production companies",
   "error_title": "Unfortunately, the search for your query ended with an error: ",
   "pages": "Page {{num}} from {{total}}",
-  "total": "{{total}} results found"
+  "back": "Go back to the search result list"
 }

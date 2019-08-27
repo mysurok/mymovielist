@@ -26,7 +26,7 @@ class Movie extends Component {
     }
 
     render () {
-        if (!this.props.searchResult || !this.props.searchResult.results) {
+        if (!this.props.searchResult || !this.props.searchResult.results || !!this.props.movie) {
             return null
         }
 
@@ -45,7 +45,8 @@ class Movie extends Component {
 
 const stateToProps = (state) => {
     return {
-        searchResult: state.searchBox.searchResult,
+        searchResult: state.searchBox.list,
+        movie: state.searchBox.movie,
         config: state.configuration
     }
 }

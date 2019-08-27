@@ -14,5 +14,7 @@
   "overview": "Översikt",
   "production_countries": "Produktionsländer",
   "production_companies": "Produktionsföretag",
-  "error_title": "Tyvärr slutade sökningen efter din fråga med ett fel: "
+  "error_title": "Tyvärr slutade sökningen efter din fråga med ett fel: ",
+  "pages": "Sidan {{num}} från {{total}}",
+  "back": "Gå tillbaka till sökresultatlistan"
 }

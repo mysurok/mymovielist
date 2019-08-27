@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
 
-import { search } from "../../actions/SearchBox"
+import {search, searchById} from "../../actions/SearchBox"
 import LocaleSwitch from "../LocaleSwitch/LocaleSwitch"
 
 import "./SearchBox.scss"
@@ -25,7 +25,13 @@ class SearchBox extends Component {
 
     componentDidUpdate = (prevProps) => {
         if (prevProps.config.locale.region !== this.props.config.locale.region) {
-            this.props.search(this.props.config.locale, this.props.query)
+            console.log(">>>>>>>>>>>>>>>>>>>????? ", this.props.movie)
+            if (this.props.movie) {
+                this.props.searchById(this.props.config.locale, this.props.movie.id)
+            } else {
+                console.log("?????????????? ", this.props.config.locale, this.props.query)
+                this.props.search(this.props.config.locale, this.props.query)
+            }
         }
     }
 
@@ -44,9 +50,10 @@ class SearchBox extends Component {
 const stateToProps = (state) => {
     console.log("State: ", state)
     return {
+        movie: state.searchBox.movie,
         config: state.configuration,
         query: state.searchBox.query
     }
 }
 
-export default connect(stateToProps, { search })(withTranslation()(SearchBox))
+export default connect(stateToProps, { search, searchById })(withTranslation()(SearchBox))
