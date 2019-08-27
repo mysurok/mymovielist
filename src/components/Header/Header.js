@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { withTranslation } from "react-i18next"
 
+import SearchBox from "../SearchBox/SearchBox"
 import "./Header.scss"
 import logo from "../../img/logo.png"
 
@@ -13,9 +14,7 @@ class Header extends Component {
 
                 <h1>{i18n("header")}</h1>
 
-                <div className="searchField">
-                    <input type="text" /><button>{i18n("search")}</button>
-                </div>
+                <SearchBox />
             </header>
         )
     }
