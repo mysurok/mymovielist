@@ -1,6 +1,10 @@
 .SearchBox {
+  height: 100%;
   white-space: nowrap;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+
   input {
     font-size: 18px;
     border: 2px solid #28e702;
@@ -16,7 +20,7 @@
     background: rgb(41, 234, 2) linear-gradient(rgb(41, 234, 2), rgb(22, 124, 0));
     border: none;
     border-radius: 0 10px 10px 0;
-    height: 40px;
+    height: 39px;
     outline: none;
     color: #ffffff;
     text-shadow: 1px 1px #555555;
