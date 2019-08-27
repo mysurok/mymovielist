@@ -2,12 +2,48 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  height: 60px;
+  height: 80px;
   width: 100vw;
-  background-color: #282c34;
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   .logo {
     width: 60px;
+    margin: 0 10px;
+  }
+
+  h1 {
+    display: inline-block;
+    font-size: 26px;
+  }
+
+  .searchField {
+    white-space: nowrap;
+    margin-right: 10px;
+    input {
+      font-size: 18px;
+      border: 2px solid #28e702;
+      border-radius: 10px 0 0 10px;
+      padding: 0 10px;
+      width: 300px;
+      height: 35px;
+      outline: none;
+    }
+
+    button {
+      font-size: 16px;
+      background: rgb(41, 234, 2) linear-gradient(rgb(41, 234, 2), rgb(22, 124, 0));
+      border: none;
+      border-radius: 0 10px 10px 0;
+      height: 40px;
+      outline: none;
+      color: #ffffff;
+      text-shadow: 1px 1px #555555;
+      &:active {
+        background: rgb(41, 234, 2) linear-gradient(rgb(22, 124, 0), rgb(41, 234, 2));
+        text-shadow: -1px -1px #555555;
+      }
+    }
   }
 }

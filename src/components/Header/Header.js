@@ -11,7 +11,11 @@ class Header extends Component {
             <header>
                 <img src={logo} alt="logo" className="logo" />
 
-                {i18n("header")}
+                <h1>{i18n("header")}</h1>
+
+                <div className="searchField">
+                    <input type="text" /><button>{i18n("search")}</button>
+                </div>
             </header>
         )
     }
