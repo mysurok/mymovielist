@@ -1,6 +1,7 @@
-import {SEARCH_COMPLETED} from "../actions/SearchBox"
+import {SEARCH_COMPLETED, SEARCH_COMPLETED_WITH_ERROR} from "../actions/SearchBox"
 
 const INITIAL_STATE = {
+    searchError: null,
     searchResult: null,
     query: null
 }
@@ -10,7 +11,15 @@ export default (state = INITIAL_STATE, action) => {
         case SEARCH_COMPLETED:
             return {
                 ...state,
+                searchError: null,
                 searchResult: action.payload.searchResult,
+                query: action.payload.query
+            }
+        case SEARCH_COMPLETED_WITH_ERROR:
+            return {
+                ...state,
+                searchResult: null,
+                searchError: action.payload.searchError,
                 query: action.payload.query
             }
         default:

@@ -9,8 +9,11 @@ import "./SearchBox.scss"
 
 class SearchBox extends Component {
     onSearch = () => {
-        console.log("Do search")
-        this.props.search(this.props.config.locale)
+        let value = document.getElementById("searchField").value
+        if (value) {
+            console.log("Do search", value)
+            this.props.search(this.props.config.locale, value)
+        }
     }
 
     onKeyDown = (e) => {
@@ -30,7 +33,7 @@ class SearchBox extends Component {
         const i18n = this.props.t
         return (
             <div className="SearchBox">
-                <input type="text" onKeyDown={ (e) => this.onKeyDown(e) }/><button onClick={ () => this.onSearch() }>{i18n("search")}</button>
+                <input type="text" id="searchField" onKeyDown={ (e) => this.onKeyDown(e) }/><button onClick={ () => this.onSearch() }>{i18n("search")}</button>
 
                 <LocaleSwitch />
             </div>
