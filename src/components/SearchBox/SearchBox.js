@@ -9,7 +9,7 @@ import "./SearchBox.scss"
 class SearchBox extends Component {
     onSearch = () => {
         console.log("Do search")
-        this.props.search()
+        this.props.search(this.props.config.locale)
     }
 
     onKeyDown = (e) => {
@@ -20,7 +20,6 @@ class SearchBox extends Component {
     }
 
     render () {
-        console.log("Props: ", this.props)
         const i18n = this.props.t
         return (
             <div className="SearchBox">
@@ -33,9 +32,10 @@ class SearchBox extends Component {
 const stateToProps = (state) => {
     console.log("State: ", state)
     return {
+        config: state.configuration,
         searchResult: state.searchResult,
         query: state.query
     }
 }
 
-export default connect(stateToProps, {search})(withTranslation()(SearchBox))
+export default connect(stateToProps, { search })(withTranslation()(SearchBox))
