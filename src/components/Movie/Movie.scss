@@ -11,6 +11,10 @@
     color: #404040;
     box-shadow: 5px 0px 10px #000, -5px 0px 10px #000;
 
+    .leftSection {
+      max-width: 200px;
+    }
+
     .poster {
       position: relative;
       left: -5px;

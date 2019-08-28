@@ -8,7 +8,7 @@ import "./LocaleSwitch.scss"
 
 const LOCALES = {
     "en": {"language": "en", "region": "EN"},
-    "se": {"language": "se", "region": "SE"},
+    "se": {"language": "sv", "region": "SE"},
     "ru": {"language": "ru", "region": "RU"}
 }
 

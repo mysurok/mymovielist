@@ -79,7 +79,7 @@ class Movie extends Component {
                         { this.drawItem("revenue", "$") }
                         { this.drawItem("release_date") }
                         { this.drawItem("runtime", null, i18n("min")) }
-                        <span className="overview">{ movie.overview }</span>
+                        { movie.overview && (<span className="overview">{ movie.overview }</span>) }
                     </div>
                 </div>
             </div>
