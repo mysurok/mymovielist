@@ -1,7 +1,9 @@
 import { API_URL, API_KEY } from "./constants"
+import Cookies from "js-cookie"
 
 export const USER_LOGGED_IN = "USER_LOGGED_IN"
 export const USER_LOGGED_OUT = "USER_LOGGED_OUT"
+export const RESTORE_SESSION = "RESTORE_SESSION"
 
 export const userLoggedIn = (user) => {
     return {
@@ -37,19 +39,28 @@ export const logIn = ( username, password ) => {
                             })
                             .then( response => response.json())
                             .then( response => {
-                                dispatch(userLoggedIn(response))
-                                fetch(API_URL + "/account?" + API_KEY + "&session_id=" + response.session_id)
-                                    .then( response => response.json())
-                                    .then( response => {
-                                        dispatch(userLoggedIn(response))
-                                    })
+                                dispatch(userLoggedIn({ session_id: response.session_id, username: username }))
+                                Cookies.set("session_id", response.session_id)
+                                Cookies.set("username", username)
                             })
                     })
             })
     }
 }
+export const restoreSession = () => {
+    return dispatch => {
+        let session_id = Cookies.get("session_id"),
+            username = Cookies.get("username")
+        dispatch({
+            type: RESTORE_SESSION,
+            payload: { user: {session_id, username } }
+        })
+    }
+}
 
 export const logOut = () => {
+    Cookies.remove("session_id")
+    Cookies.remove("username")
     return dispatch => {
         dispatch({
             type: USER_LOGGED_OUT

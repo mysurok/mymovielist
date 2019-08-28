@@ -26,6 +26,7 @@ export default (state = INITIAL_STATE, action) => {
         case SEARCH_COMPLETED_WITH_ERROR:
             return {
                 ...state,
+                list: null,
                 movie: null,
                 searchError: action.payload.searchError,
                 query: action.payload.query

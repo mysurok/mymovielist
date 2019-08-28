@@ -12,9 +12,10 @@
     right: 20px;
     flex-direction: column;
     background: #555555;
+    z-index: 10;
 
     .action {
-      padding: 20px 60px 20px 20px;
+      padding: 20px 80px 20px 20px;
       cursor: pointer;
 
       &:hover {
@@ -25,7 +26,6 @@
 
   .loginForm {
     padding: 20px;
-    z-index: 10;
 
     input {
       font-size: 15px;
@@ -47,9 +47,13 @@
       color: #ffffff;
       text-shadow: 1px 1px #555555;
       box-shadow: 2px 2px 5px #333333;
-      &:active {
+      &:not(.disabled):active {
         background: rgb(41, 234, 2) linear-gradient(rgb(22, 124, 0), rgb(41, 234, 2));
         text-shadow: -1px -1px #555555;
+      }
+
+      &.disabled {
+        background: #a3a4a8 linear-gradient(#a3a4a8, #282c34);
       }
     }
   }
