@@ -1,3 +1,4 @@
+import { API_URL, API_KEY } from "./constants"
 export const SEARCH_COMPLETED = "SEARCH_COMPLETED"
 export const SEARCH_BY_ID_COMPLETED = "SEARCH_BY_ID_COMPLETED"
 export const SEARCH_COMPLETED_WITH_ERROR = "SEARCH_COMPLETED_WITH_ERROR"
@@ -34,7 +35,7 @@ export const completeSearchWithError = (searchError, query) => {
 
 export const search = (locale, query) => {
     return dispatch => {
-        return fetch("https://api.themoviedb.org/3/search/movie?api_key=4baa15f53c4ddd8ee8af5521d2d82f9a&language=" + locale.language + "&region=" + locale.region + "&query=" + query)
+        return fetch(API_URL + "/search/movie?" + API_KEY + "a&language=" + locale.language + "&region=" + locale.region + "&query=" + query)
             .then(response => response.json())
             .then(response => {
                 dispatch(completeSearch(response, query))
@@ -44,7 +45,7 @@ export const search = (locale, query) => {
 
 export const searchById = (locale, id) => {
     return dispatch => {
-        return fetch("https://api.themoviedb.org/3/movie/" + id + "?api_key=4baa15f53c4ddd8ee8af5521d2d82f9a&language=" + locale.language + "&region=" + locale.region)
+        return fetch(API_URL + "/movie/" + id + "?" + API_KEY + "&language=" + locale.language + "&region=" + locale.region)
             .then(response => response.json())
             .then(response => {
                 if (response.id) {

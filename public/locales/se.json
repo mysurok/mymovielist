@@ -16,5 +16,11 @@
   "production_companies": "Produktionsföretag",
   "error_title": "Tyvärr slutade sökningen efter din fråga med ett fel: ",
   "pages": "Sidan {{num}} från {{total}}",
-  "back": "Gå tillbaka till sökresultatlistan"
+  "back": "Gå tillbaka till sökresultatlistan",
+  "watchlist": "Min watchlist",
+  "favorites": "Mina favoriter",
+  "username": "Användarnamn",
+  "password": "Password",
+  "login": "Logga in",
+  "logout": "Logga ut"
 }

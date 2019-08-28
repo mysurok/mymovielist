@@ -1,0 +1,62 @@
+.user {
+  .title {
+    font-weight: 700;
+    font-size: 14px;
+    padding: 20px 10px;
+  }
+
+  .profile {
+    display: none;
+    position: absolute;
+    top: 61px;
+    right: 20px;
+    flex-direction: column;
+    background: #555555;
+
+    .action {
+      padding: 20px 60px 20px 20px;
+      cursor: pointer;
+
+      &:hover {
+        background: #444444;
+      }
+    }
+  }
+
+  .loginForm {
+    padding: 20px;
+    z-index: 10;
+
+    input {
+      font-size: 15px;
+      border: 2px solid #28e702;
+      border-radius: 10px;
+      padding: 0 10px;
+      height: 30px;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    button {
+      font-size: 16px;
+      background: rgb(41, 234, 2) linear-gradient(rgb(41, 234, 2), rgb(22, 124, 0));
+      border: none;
+      border-radius: 10px;
+      height: 35px;
+      outline: none;
+      color: #ffffff;
+      text-shadow: 1px 1px #555555;
+      box-shadow: 2px 2px 5px #333333;
+      &:active {
+        background: rgb(41, 234, 2) linear-gradient(rgb(22, 124, 0), rgb(41, 234, 2));
+        text-shadow: -1px -1px #555555;
+      }
+    }
+  }
+
+  &:hover, .profile:hover {
+    .profile {
+      display: flex;
+    }
+  }
+}

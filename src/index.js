@@ -7,12 +7,14 @@ import { Provider } from "react-redux"
 import App from "./App"
 import searchBoxReducer from "./reducers/SearchBox"
 import configurationReducer from "./reducers/Configuration"
+import userReducer from "./reducers/User"
 
 import "./index.css"
 
 const store = createStore( combineReducers({
     configuration: configurationReducer,
-    searchBox: searchBoxReducer
+    searchBox: searchBoxReducer,
+    user: userReducer
 }), {}, applyMiddleware(reduxThunk))
 render(
     <Provider store={store}>

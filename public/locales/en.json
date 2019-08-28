@@ -16,5 +16,11 @@
   "production_companies": "Production companies",
   "error_title": "Unfortunately, the search for your query ended with an error: ",
   "pages": "Page {{num}} from {{total}}",
-  "back": "Go back to the search result list"
+  "back": "Go back to the search result list",
+  "watchlist": "My watchlist",
+  "favorites": "My favorites",
+  "username": "User name",
+  "password": "Password",
+  "login": "Log in",
+  "logout": "Log out"
 }

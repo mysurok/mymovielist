@@ -2,8 +2,11 @@ import React, { Component } from "react"
 import { withTranslation } from "react-i18next"
 
 import SearchBox from "../SearchBox/SearchBox"
-import "./Header.scss"
+import User from "../User/User"
+import LocaleSwitch from "../LocaleSwitch/LocaleSwitch"
+
 import logo from "../../img/logo.png"
+import "./Header.scss"
 
 class Header extends Component {
     render () {
@@ -15,6 +18,8 @@ class Header extends Component {
                 <h1>{i18n("header")}</h1>
 
                 <SearchBox />
+                <User />
+                <LocaleSwitch />
             </header>
         )
     }
