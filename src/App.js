@@ -5,6 +5,7 @@ import "./i18n"
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import MoviesList from "./components/MoviesList/MoviesList"
+import Favorites from "./components/Favorites/Favorites"
 import Movie from "./components/Movie/Movie"
 import Error from "./components/Error/Error"
 
@@ -16,6 +17,7 @@ function App() {
 
             <div className="content">
                 <MoviesList />
+                <Favorites />
                 <Movie />
                 <Error />
             </div>

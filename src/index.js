@@ -8,13 +8,15 @@ import App from "./App"
 import searchBoxReducer from "./reducers/SearchBox"
 import configurationReducer from "./reducers/Configuration"
 import userReducer from "./reducers/User"
+import favoritesReducer from "./reducers/Favorites"
 
 import "./index.css"
 
 const store = createStore( combineReducers({
     configuration: configurationReducer,
     searchBox: searchBoxReducer,
-    user: userReducer
+    user: userReducer,
+    favorites: favoritesReducer
 }), {}, applyMiddleware(reduxThunk))
 render(
     <Provider store={store}>
