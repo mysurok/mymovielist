@@ -35,7 +35,7 @@ export const completeSearchWithError = (searchError, query) => {
 
 export const search = (locale, query) => {
     return dispatch => {
-        return fetch(API_URL + "/search/movie?" + API_KEY + "a&language=" + locale.language + "&region=" + locale.region + "&query=" + query)
+        return fetch(API_URL + "/search/movie?" + API_KEY + "&language=" + locale.language + "&region=" + locale.region + "&query=" + query)
             .then(response => response.json())
             .then(response => {
                 dispatch(completeSearch(response, query))

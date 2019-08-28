@@ -36,6 +36,19 @@
         margin: 0;
       }
 
+      .ratingAndControl {
+        display: flex;
+        flex-direction: row;
+
+        .favorite {
+          font-size: 20px;
+          margin-right: 10px;
+          color: #888888;
+          &.yes {
+            color: #fe2500;
+          }
+        }
+      }
       .rating {
         display: flex;
         align-items: center;
@@ -46,5 +59,10 @@
         }
       }
     }
+  }
+
+  .paging {
+    width: 100%;
+    text-align: center;
   }
 }

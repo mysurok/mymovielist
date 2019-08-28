@@ -1,4 +1,4 @@
-import {RESTORE_SESSION, USER_LOGGED_IN, USER_LOGGED_OUT} from "../actions/User"
+import {RESTORE_SESSION, SET_LAST_ACTION, USER_LOGGED_IN, USER_LOGGED_OUT} from "../actions/User"
 
 const INITIAL_STATE = {
     session_id: null
@@ -21,6 +21,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 session_id: null,
                 username: null
+            }
+        case SET_LAST_ACTION:
+            return {
+                ...state,
+                ...action.payload
             }
         default:
             return state;

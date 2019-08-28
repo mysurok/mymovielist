@@ -2,7 +2,9 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
 
-import {search, searchById} from "../../actions/SearchBox"
+import { search, searchById } from "../../actions/SearchBox"
+import { searchFavorites } from "../../actions/Favorites"
+import { setLastAction } from "../../actions/User"
 
 import "./SearchBox.scss"
 
@@ -10,6 +12,8 @@ class SearchBox extends Component {
     onSearch = () => {
         let value = document.getElementById("searchField").value
         if (value) {
+            this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
+            this.props.setLastAction("search")
             this.props.search(this.props.config.locale, value)
         }
     }
@@ -27,6 +31,7 @@ class SearchBox extends Component {
                 this.props.searchById(this.props.config.locale, this.props.movie.id)
             } else {
                 if (this.props.query) {
+                    this.props.setLastAction("search")
                     this.props.search(this.props.config.locale, this.props.query)
                 }
             }
@@ -48,8 +53,9 @@ const stateToProps = (state) => {
     return {
         movie: state.searchBox.movie,
         config: state.configuration,
+        user: state.user,
         query: state.searchBox.query
     }
 }
 
-export default connect(stateToProps, { search, searchById })(withTranslation()(SearchBox))
+export default connect(stateToProps, { search, searchById, setLastAction, searchFavorites })(withTranslation()(SearchBox))

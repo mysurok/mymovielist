@@ -3,7 +3,8 @@ import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
 
 import "./User.scss"
-import { restoreSession, logIn, logOut } from "../../actions/User"
+import { restoreSession, logIn, logOut, setLastAction } from "../../actions/User"
+import { searchFavorites } from "../../actions/Favorites"
 
 class User extends Component {
 
@@ -26,7 +27,8 @@ class User extends Component {
     }
 
     getFavorites = () => {
-        console.log(">>>>>>>>>>>>>> getFavorites")
+        this.props.setLastAction("favorites")
+        this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
     }
 
     logOut = () => {
@@ -77,4 +79,4 @@ const stateToProps = (state) => {
     }
 }
 
-export default connect(stateToProps, { restoreSession, logIn, logOut })(withTranslation()(User))
+export default connect(stateToProps, { restoreSession, logIn, logOut, searchFavorites, setLastAction })(withTranslation()(User))

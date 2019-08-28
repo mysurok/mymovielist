@@ -4,6 +4,7 @@ import Cookies from "js-cookie"
 export const USER_LOGGED_IN = "USER_LOGGED_IN"
 export const USER_LOGGED_OUT = "USER_LOGGED_OUT"
 export const RESTORE_SESSION = "RESTORE_SESSION"
+export const SET_LAST_ACTION = "SET_LAST_ACTION"
 
 export const userLoggedIn = (user) => {
     return {
@@ -64,6 +65,15 @@ export const logOut = () => {
     return dispatch => {
         dispatch({
             type: USER_LOGGED_OUT
+        })
+    }
+}
+
+export const setLastAction = (name) => {
+    return dispatch => {
+        dispatch({
+            type: SET_LAST_ACTION,
+            payload:  { lastAction: name }
         })
     }
 }
