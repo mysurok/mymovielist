@@ -40,7 +40,7 @@ class Movie extends Component {
             return null
         }
         return (
-            <span className="item">
+            <span className="item url">
                 <span className="name">{ i18n(name) }:</span>
                 <span className="value"><a href={movie[name]} target="_blank" rel="noopener noreferrer">{ movie[name] }</a></span>
             </span>

@@ -15,6 +15,9 @@
     width: 300px;
     height: 35px;
     outline: none;
+    @media (max-width: 639px) {
+      width: auto;
+    }
   }
 
   button {

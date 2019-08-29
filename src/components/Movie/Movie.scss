@@ -60,4 +60,32 @@
       }
     }
   }
+  @media (max-width: 640px) {
+    min-width: 100vw;
+    .movie {
+      width: calc(100% - 20px);
+      margin: 0 auto;
+      flex-direction: column;
+      .info {
+        padding: 10px;
+        .item {
+          .name {
+            width: auto;
+            font-weight: 600;
+            margin-right: 10px;
+          }
+          &.url {
+            display: none;
+          }
+        }
+        .overview {
+          width: calc(100% - 40px);
+        }
+      }
+      .leftSection {
+        min-width: 100%;
+        text-align: center;
+      }
+    }
+  }
 }

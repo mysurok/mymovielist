@@ -18,5 +18,8 @@ header {
   h1 {
     display: inline-block;
     font-size: 26px;
+    @media (max-width: 740px) {
+      display: none;
+    }
   }
 }

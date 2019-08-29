@@ -65,4 +65,17 @@
     width: 100%;
     text-align: center;
   }
+  @media (max-width: 480px) {
+    .item {
+      width: 100%;
+      flex-direction: column-reverse;
+      .info {
+        height: auto;
+      }
+      .poster {
+        align-self: center;
+      }
+
+    }
+  }
 }
