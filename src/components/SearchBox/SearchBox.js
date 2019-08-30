@@ -1,10 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
-
-import { search, searchById } from "../../actions/SearchBox"
-import { searchFavorites } from "../../actions/Favorites"
-import { setLastAction } from "../../actions/User"
+import { withRouter } from "react-router-dom"
 
 import "./SearchBox.scss"
 
@@ -12,9 +9,7 @@ class SearchBox extends Component {
     onSearch = () => {
         let value = document.getElementById("searchField").value
         if (value) {
-            this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
-            this.props.setLastAction("search")
-            this.props.search(this.props.config.locale, value)
+            this.props.history.push( "/movies/" + value )
         }
     }
 
@@ -26,15 +21,8 @@ class SearchBox extends Component {
     }
 
     componentDidUpdate = (prevProps) => {
-        if (prevProps.config.locale.region !== this.props.config.locale.region) {
-            if (this.props.movie) {
-                this.props.searchById(this.props.config.locale, this.props.movie.id)
-            } else {
-                if (this.props.query) {
-                    this.props.setLastAction("search")
-                    this.props.search(this.props.config.locale, this.props.query)
-                }
-            }
+        if (prevProps.query !== this.props.query) {
+            document.getElementById("searchField").value = this.props.query || ""
         }
     }
 
@@ -51,11 +39,10 @@ class SearchBox extends Component {
 const stateToProps = (state) => {
     console.log("State: ", state)
     return {
-        movie: state.searchBox.movie,
         config: state.configuration,
         user: state.user,
-        query: state.searchBox.query
+        query: state.movies.query
     }
 }
 
-export default connect(stateToProps, { search, searchById, setLastAction, searchFavorites })(withTranslation()(SearchBox))
+    export default withRouter(connect(stateToProps)(withTranslation()(SearchBox)))

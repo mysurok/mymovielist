@@ -1,4 +1,5 @@
 import React, { Suspense } from "react"
+import { Route, Switch, BrowserRouter } from "react-router-dom"
 import "./App.scss"
 import "./i18n"
 
@@ -11,21 +12,27 @@ import Error from "./components/Error/Error"
 
 function App() {
     return (
-    <div className="App">
-        <Suspense fallback={ <h1>Loading...</h1> }>
-            <Header />
+        <BrowserRouter>
+            <div className="App">
+                <Suspense fallback={ <h1>Loading...</h1> }>
+                    <Header />
 
-            <div className="content">
-                <MoviesList />
-                <Favorites />
-                <Movie />
-                <Error />
+                    <div className="content">
+                        <Switch>
+                            <Route exact path="/" component={ MoviesList } />
+                            <Route exact path="/movies/:query" component={ MoviesList } />
+                            <Route exact path="/movie/:id" component={ Movie } />
+                            <Route exact path="/watchlist" component={ Favorites } />
+                            <Route exact path="/favorites" component={ Favorites } />
+                        </Switch>
+                        <Error />
+                    </div>
+
+                    <Footer />
+                </Suspense>
             </div>
-
-            <Footer />
-        </Suspense>
-    </div>
-  )
+        </BrowserRouter>
+    )
 }
 
 export default App

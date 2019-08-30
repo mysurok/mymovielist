@@ -1,7 +1,12 @@
 .movieWrapper {
   .back {
+    display: block;
     margin-bottom: 20px;
-    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    &:hover {
+      color: #dddddd;
+    }
   }
   .movie {
     width: 1000px;

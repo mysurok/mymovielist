@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
+import { Link } from 'react-router-dom'
 
 import "./User.scss"
-import { restoreSession, logIn, logOut, setLastAction } from "../../actions/User"
-import { searchFavorites } from "../../actions/Favorites"
+import { restoreSession, logIn, logOut } from "../../actions/User"
 
 class User extends Component {
 
@@ -20,15 +20,6 @@ class User extends Component {
         if (username && password) {
             this.props.logIn(username, password)
         }
-    }
-
-    getWatchlist = () => {
-        console.log(">>>>>>>>>>>>>> getWatchlist")
-    }
-
-    getFavorites = () => {
-        this.props.setLastAction("favorites")
-        this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
     }
 
     logOut = () => {
@@ -62,8 +53,8 @@ class User extends Component {
                 </div> }
 
                 { this.props.user.session_id && <div className="profile userActions">
-                    <span className="action" onClick={() => ( this.getWatchlist() )}>{ i18n("watchlist") }</span>
-                    <span className="action" onClick={() => ( this.getFavorites() )}>{ i18n("favorites") }</span>
+                    <Link to="/watchlist" className="action"> {i18n("watchlist")} </Link>
+                    <Link to="/favorites" className="action"> {i18n("favorites")} </Link>
                     <span className="action" onClick={() => ( this.logOut() )}>{ i18n("logout") }</span>
                 </div> }
             </div>
@@ -73,10 +64,8 @@ class User extends Component {
 
 const stateToProps = (state) => {
     return {
-        movie: state.searchBox.movie,
-        config: state.configuration,
         user: state.user
     }
 }
 
-export default connect(stateToProps, { restoreSession, logIn, logOut, searchFavorites, setLastAction })(withTranslation()(User))
+export default connect(stateToProps, { restoreSession, logIn, logOut })(withTranslation()(User))

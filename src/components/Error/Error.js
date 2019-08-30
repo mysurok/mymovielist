@@ -24,7 +24,7 @@ class Error extends Component {
 
 const stateToProps = (state) => {
     return {
-        error: state.searchBox.searchError
+        error: state.movies.searchError || state.movie.searchError
     }
 }
 

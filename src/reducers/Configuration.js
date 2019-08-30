@@ -1,6 +1,7 @@
 import { CONFIGURATION_RECEIVED, LOCALE_CHANGED } from "../actions/Configuration"
 
 const INITIAL_STATE = {
+    images: {},
     locale: {
         "language": "en",
         "region": "EN"

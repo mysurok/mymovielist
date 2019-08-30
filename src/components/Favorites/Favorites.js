@@ -3,33 +3,44 @@ import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
 
 import "./Favorites.scss"
-import { search, searchById } from "../../actions/SearchBox"
+import { search, searchFavorites } from "../../actions/MoviesList"
 import { Rating } from "../Rating/Rating"
+import { setLastAction } from "../../actions/User"
+import { Link } from "react-router-dom"
 
 class Favorites extends Component {
 
-    openMovie = (id) => {
-        this.props.searchById(this.props.config.locale, id)
+    constructor(props) {
+        super(props)
+        this.props.setLastAction("/favorites")
+        this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if ((prevProps.config.locale.region !== this.props.config.locale.region) ||
+            (prevProps.user.session_id !== this.props.user.session_id)) {
+            this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
+        }
     }
 
     drawMovie = (movie) => {
         return (
-            <div className="item" key={ movie.id } onClick={ () => { this.openMovie(movie.id) } }>
+            <Link to={"/movie/" + movie.id} className="item" key={ movie.id }>
                 <div className="info">
                     <h1>{ movie.title }</h1>
                     <span className="ratingAndControl">
-                        <span className="favorite yes">♥</span>
-                        <Rating rating={ movie.vote_average } count={ movie.vote_count } />
-                    </span>
+                    <span className="favorite yes">♥</span>
+                    <Rating rating={ movie.vote_average } count={ movie.vote_count } />
+                </span>
                     <span className="overview">{ movie.overview }</span>
                 </div>
                 <img src={ this.props.config.images.base_url + "w154" + movie.poster_path } className="poster" alt={ movie.title }/>
-            </div>
+            </Link>
         )
     }
 
     render () {
-        if (this.props.user.lastAction !== "favorites" || !this.props.favorites.results || !!this.props.movie) {
+        if (!this.props.movies.favorites || !this.props.movies.favorites.results) {
             return null
         }
 
@@ -37,9 +48,9 @@ class Favorites extends Component {
 
         return (
             <div className="moviesList">
-                { this.props.favorites.results.map(movie => ( this.drawMovie( movie ) ))}
+                { this.props.movies.favorites.results.map(movie => ( this.drawMovie( movie ) ))}
                 <div className="paging">
-                    &lt;&lt; {i18n("pages", { num: this.props.favorites.page, total: this.props.favorites.total_pages})} &gt;&gt;
+                    &lt;&lt; {i18n("pages", { num: this.props.movies.favorites.page, total: this.props.movies.favorites.total_pages})} &gt;&gt;
                 </div>
             </div>
         )
@@ -48,11 +59,10 @@ class Favorites extends Component {
 
 const stateToProps = (state) => {
     return {
-        favorites: state.favorites,
-        movie: state.searchBox.movie,
+        movies: state.movies,
         user: state.user,
         config: state.configuration
     }
 }
 
-export default connect(stateToProps, { search, searchById })(withTranslation()(Favorites))
+export default connect(stateToProps, { search, searchFavorites, setLastAction })(withTranslation()(Favorites))

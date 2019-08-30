@@ -5,9 +5,21 @@ import { withTranslation } from "react-i18next"
 import "./Movie.scss"
 import { Rating } from "../Rating/Rating"
 
-import { goBackToSearchResultList } from "../../actions/SearchBox"
+import { search } from "../../actions/Movie"
+import { Link } from "react-router-dom"
 
 class Movie extends Component {
+
+    constructor(props) {
+        super(props)
+        this.props.search(this.props.config.locale, this.props.match.params.id)
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.config.locale.region !== this.props.config.locale.region) {
+            this.props.search(this.props.config.locale, this.props.movie.id )
+        }
+    }
 
     drawItem = (name, prefix = "", postfix = "") => {
         let movie = this.props.movie
@@ -47,10 +59,6 @@ class Movie extends Component {
         )
     }
 
-    onGoBack = () => {
-        this.props.goBackToSearchResultList()
-    }
-
     render () {
         let movie = this.props.movie
         if (!movie || !movie.id) {
@@ -61,7 +69,7 @@ class Movie extends Component {
 
         return (
             <div className="movieWrapper">
-                <div className="back" onClick={ () => { this.onGoBack()} }>« {i18n("back")}</div>
+                {this.props.user.lastAction && <Link to={ this.props.user.lastAction } className="back">« {i18n("back")}</Link>}
                 <div className="movie">
                     <div className="leftSection">
                         <img src={ this.props.config.images.base_url + "w185" + movie.poster_path } className="poster" alt={ movie.title }/>
@@ -89,10 +97,10 @@ class Movie extends Component {
 
 const stateToProps = (state) => {
     return {
-        movie: state.searchBox.movie,
+        movie: state.movie,
         config: state.configuration,
-        query: state.query
+        user: state.user
     }
 }
 
-export default connect(stateToProps, {goBackToSearchResultList})(withTranslation()(Movie))
+export default connect(stateToProps, { search })(withTranslation()(Movie))

@@ -16,11 +16,13 @@
     z-index: 10;
 
     .action {
+      text-decoration: none;
+      color: #ffffff;
       padding: 20px 80px 20px 20px;
-      cursor: pointer;
 
       &:hover {
         background: #444444;
+        color: #ffffff;
       }
     }
   }
