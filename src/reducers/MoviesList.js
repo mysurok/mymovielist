@@ -24,13 +24,13 @@ export default (state = INITIAL_STATE, action) => {
                 query: action.payload.query
             }
         case FAVORITES_GETTING_COMPLETED:
-            let shortList = {}
-            if ( action.payload.searchResult.results ) action.payload.searchResult.results.forEach(movie => { shortList[movie.id] = true })
+            let shortFavorList = {}
+            if ( action.payload.searchResult.results ) action.payload.searchResult.results.forEach(movie => { shortFavorList[movie.id] = true })
 
             return {
                 ...state,
                 favorites: action.payload.searchResult,
-                shortFavorList: shortList,
+                shortFavorList: shortFavorList,
                 searchError: null
             }
         case MARK_AS_FAVORITE:

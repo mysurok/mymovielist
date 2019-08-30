@@ -1,10 +1,11 @@
-import reducer, { initialState } from './reducers/SearchBox'
+import reducer, { initialState } from '../reducers/MoviesList'
 import {
     SEARCH_COMPLETED,
-    SEARCH_BY_ID_COMPLETED,
     SEARCH_COMPLETED_WITH_ERROR,
-    completeSearch
-} from "./actions/SearchBox"
+    FAVORITES_GETTING_COMPLETED,
+    completeSearch,
+    completeFavoriteSearch
+} from "../actions/MoviesList"
 
 describe('search reducer', () => {
 
@@ -17,35 +18,16 @@ describe('search reducer', () => {
         expect(reducer(initialState, action)).toEqual({
             ...initialState,
             searchError: null,
-            movie: null,
+            favorites: null,
             list: action.payload.searchResult,
             query: action.payload.query
-        })
-    })
-
-    it('SEARCH_BY_ID_COMPLETED', () => {
-        const initialState = {
-            list: {results: []},
-            searchError: null,
-            movie: null
-        }
-        const action = {
-            type: SEARCH_BY_ID_COMPLETED,
-            payload: { searchResult: {id: "76341", original_title: "Mad Max: Fury Road"}},
-        }
-
-        expect(reducer(initialState, action)).toEqual({
-            ...initialState,
-            searchError: null,
-            movie: action.payload.searchResult
         })
     })
 
     it('SEARCH_COMPLETED_WITH_ERROR', () => {
         const initialState = {
             list: {results: []},
-            searchError: null,
-            movie: {id: "76341", original_title: "Mad Max: Fury Road"}
+            searchError: null
         }
         const action = {
             type: SEARCH_COMPLETED_WITH_ERROR,
@@ -55,7 +37,6 @@ describe('search reducer', () => {
         expect(reducer(initialState, action)).toEqual({
             ...initialState,
             list: null,
-            movie: null,
             query: action.payload.query,
             searchError: action.payload.searchError
         })
@@ -64,7 +45,6 @@ describe('search reducer', () => {
     it('SEARCH_COMPLETED', () => {
         const initialState = {
             list: null,
-            movie: null,
             searchError: "404 Movie not found"
         }
         const action = {
@@ -75,27 +55,31 @@ describe('search reducer', () => {
         expect(reducer(initialState, action)).toEqual({
             ...initialState,
             searchError: null,
-            movie: null,
             list: action.payload.searchResult,
             query: action.payload.query
         })
     })
 
-    it('SEARCH_BY_ID_COMPLETED', () => {
+    it('FAVORITES_GETTING_COMPLETED', () => {
         const initialState = {
-            list: null,
-            movie: null,
-            searchError: "404 Movie not found"
+            list: [],
+            searchError: null
         }
         const action = {
-            type: SEARCH_BY_ID_COMPLETED,
-            payload: { searchResult: {id: "76341", original_title: "Mad Max: Fury Road"}},
+            type: FAVORITES_GETTING_COMPLETED,
+            payload: { searchResult: {
+                    results: [{id: "76341", original_title: "Mad Max: Fury Road"}],
+                    page: 1,
+                    total_pages: 2,
+                    total_results: 16
+                }},
         }
 
         expect(reducer(initialState, action)).toEqual({
             ...initialState,
             searchError: null,
-            movie: action.payload.searchResult
+            shortFavorList: { "76341": true},
+            favorites: action.payload.searchResult
         })
     })
 
@@ -108,5 +92,25 @@ describe('search reducer', () => {
             }
         }
         expect(completeSearch({id: "76341", original_title: "Mad Max: Fury Road"}, "Mad Max")).toEqual(expectedAction)
+    })
+
+    it('completeSearch: should create an action to set FAVORITES_GETTING_COMPLETED', () => {
+        const expectedAction = {
+            type: FAVORITES_GETTING_COMPLETED,
+            payload: {
+                searchResult: { searchResult: {
+                        results: [{id: "76341", original_title: "Mad Max: Fury Road"}],
+                        page: 1,
+                        total_pages: 2,
+                        total_results: 16
+                    }}
+            }
+        }
+        expect(completeFavoriteSearch({ searchResult: {
+                results: [{id: "76341", original_title: "Mad Max: Fury Road"}],
+                page: 1,
+                total_pages: 2,
+                total_results: 16
+            }}, "Mad Max")).toEqual(expectedAction)
     })
 })

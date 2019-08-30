@@ -12,15 +12,17 @@ class Movie extends Component {
 
     constructor(props) {
         super(props)
-        this.props.setLastAction("/movies/" + this.props.match.params.query)
         this.props.setQuery( this.props.match.params.query )
-        this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
+        if (this.props.user.session_id) {
+            this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
+        }
     }
 
     componentDidUpdate = (prevProps) => {
         if ((prevProps.config.locale.region !== this.props.config.locale.region) ||
             (prevProps.movies.query !== this.props.match.params.query)) {
             if (this.props.match.params.query) {
+                this.props.setLastAction("/movies/" + this.props.match.params.query)
                 this.props.search(this.props.config.locale, this.props.match.params.query)
             }
         }
@@ -29,7 +31,9 @@ class Movie extends Component {
     onFavoriteClick = (e, id, isFavorite) => {
         e.stopPropagation()
         e.preventDefault()
-        this.props.markAsFavorite(this.props.user.session_id, id, isFavorite)
+        if (this.props.user.session_id) {
+            this.props.markAsFavorite(this.props.user.session_id, id, isFavorite)
+        }
     }
 
     drawMovie = (movie) => {
