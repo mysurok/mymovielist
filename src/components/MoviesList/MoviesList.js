@@ -12,7 +12,10 @@ class Movie extends Component {
 
     constructor(props) {
         super(props)
-        this.props.setQuery( this.props.match.params.query )
+        if (this.props.match.params.query) {
+            this.props.setQuery( this.props.match.params.query )
+            this.props.setLastAction("/movies/" + this.props.match.params.query)
+        }
         if (this.props.user.session_id) {
             this.props.searchFavorites(this.props.config.locale, this.props.user.session_id)
         }
@@ -22,7 +25,6 @@ class Movie extends Component {
         if ((prevProps.config.locale.region !== this.props.config.locale.region) ||
             (prevProps.movies.query !== this.props.match.params.query)) {
             if (this.props.match.params.query) {
-                this.props.setLastAction("/movies/" + this.props.match.params.query)
                 this.props.search(this.props.config.locale, this.props.match.params.query)
             }
         }

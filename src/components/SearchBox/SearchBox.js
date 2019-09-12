@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { withTranslation } from "react-i18next"
 import { withRouter } from "react-router-dom"
+import { setLastAction } from "../../actions/User"
 
 import "./SearchBox.scss"
 
@@ -10,6 +11,7 @@ class SearchBox extends Component {
         let value = document.getElementById("searchField").value
         if (value) {
             this.props.history.push( "/movies/" + value )
+            this.props.setLastAction( "/movies/" + value )
         }
     }
 
@@ -45,4 +47,4 @@ const stateToProps = (state) => {
     }
 }
 
-    export default withRouter(connect(stateToProps)(withTranslation()(SearchBox)))
+    export default withRouter(connect(stateToProps, { setLastAction })(withTranslation()(SearchBox)))
